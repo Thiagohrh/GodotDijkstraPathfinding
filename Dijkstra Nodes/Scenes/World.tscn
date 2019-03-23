@@ -16,6 +16,51 @@ script = ExtResource( 1 )
 
 [node name="Graph" parent="." index="0" instance=ExtResource( 2 )]
 
+[node name="Node" parent="Graph/PositionsHolder" index="0"]
+
+neighbour = NodePath("../Node2")
+neighbour1 = NodePath("../Node4")
+neighbour2 = null
+neighbour3 = null
+neighbour4 = null
+neighbour5 = null
+
+[node name="Node2" parent="Graph/PositionsHolder" index="1"]
+
+neighbour = NodePath("../Node")
+neighbour1 = NodePath("../Node3")
+neighbour2 = NodePath("../Node4")
+neighbour3 = NodePath("../Node5")
+neighbour4 = null
+neighbour5 = null
+
+[node name="Node3" parent="Graph/PositionsHolder" index="2"]
+
+neighbour = NodePath("../Node2")
+neighbour1 = NodePath("../Node5")
+neighbour2 = null
+neighbour3 = null
+neighbour4 = null
+neighbour5 = null
+
+[node name="Node4" parent="Graph/PositionsHolder" index="3"]
+
+neighbour = NodePath("../Node")
+neighbour1 = NodePath("../Node2")
+neighbour2 = NodePath("../Node5")
+neighbour3 = null
+neighbour4 = null
+neighbour5 = null
+
+[node name="Node5" parent="Graph/PositionsHolder" index="4"]
+
+neighbour = NodePath("../Node3")
+neighbour1 = NodePath("../Node2")
+neighbour2 = NodePath("../Node4")
+neighbour3 = null
+neighbour4 = null
+neighbour5 = null
+
 [node name="Enemy" type="Area2D" parent="." index="1"]
 
 editor/display_folded = true
@@ -50,3 +95,4 @@ playback/repeat = false
 playback/speed = 1.0
 
 
+[editable path="Graph"]

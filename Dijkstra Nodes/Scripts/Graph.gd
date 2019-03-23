@@ -39,7 +39,6 @@ func find_closest_node(_pos):
 			pass
 		pass
 	return target_node
-	pass
 
 func find_farthest_node(_pos):
 	#Use this function to know in what node you should end
@@ -53,12 +52,61 @@ func find_farthest_node(_pos):
 			pass
 		pass
 	return target_node
-	pass
 
 func dijkstra(_start_node, _end_node):
 	#Recieving two nodes, finds a path along the graph made up by the array of all_nodes. Returns an Array() with the path.
 	var final_path = Array()
+	#A dictionary that's used to keep the shortest path to each KEY
+	var shortest_path_to = {}
+	#An array to store the min distances to that final position.
+	for i in all_nodes:
+		i.set_visited(false)
+		i.set_min_distance(99999)
+		#Does this work?
+		shortest_path_to[i] = []
+	
+	_start_node.set_min_distance(0)
+	
+	var current_node = _start_node
+	
+	#Loop could probrably start here-----------------------------------------
+	var repetition = 0
+	
+	while repetition <= all_nodes.size() - 1:
+		#print("Working with this: " , current_node.name, " node!")
+		var neighbours = current_node.get_neighbours()
+		for j in neighbours:
+			if !j.check_visited():
+				var distance_buffer = current_node.get_min_distance() + current_node.global_position.distance_to(j.global_position)
+				if distance_buffer < j.get_min_distance():
+					j.set_min_distance(distance_buffer)
+					pass
+			pass
+		current_node.set_visited(true)
+		
+		
+		#Picking another node, that has not been visited, and has the smallest distance.
+		var smallest_distance_so_far = 999999
+		var unvisited_smallest_distance = null
+		for i in all_nodes:
+			if !i.check_visited() and i.get_min_distance() < smallest_distance_so_far:
+				unvisited_smallest_distance = i
+				pass
+			pass
+		
+		current_node = unvisited_smallest_distance
+		
+		repetition += 1
+		pass
 	
 	
 	
+	
+	#for i in all_nodes:
+	#	print("Im node ", i.name, " and my min distance is: " , i.get_min_distance())
+	
+	#---------------------------------------------------------
+	#This can be usefull to access any value of distance...ok..
+	#for i in min_distance:
+	#	print(i)
 	return final_path
