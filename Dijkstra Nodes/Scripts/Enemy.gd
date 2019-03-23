@@ -5,9 +5,9 @@ func move(_path):
 		print("WHAT THE FUCK IS GOIN ON")
 		pass
 	else:
-		print("I can work with this...")
+		#print("I can work with this...")
 		if _path.size() == 0:
-			print("JUST KIDDING I CANT")
+			print("something went terribly wrong...")
 	for i in _path:
 		$Tween.interpolate_property(self, "global_position", global_position ,i.global_position,1,Tween.TRANS_LINEAR,Tween.EASE_IN,0)
 		$Tween.start()

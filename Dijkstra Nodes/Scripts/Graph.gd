@@ -11,7 +11,7 @@ func _ready():
 
 func get_path_array(_enemy_pos, _player_pos):
 	#This is a master function that, recieving 2 positions, brings back a path using Dijkstra algorithm.
-	print("Enemy position: " , _enemy_pos, " Click position: ", _player_pos)
+	#print("Enemy position: " , _enemy_pos, " Click position: ", _player_pos)
 	if _player_pos != null:#Just a safety check in order to see if the enemy should run from an enemy or not.
 		var starting_pos = find_closest_node(_enemy_pos)
 		var destination_pos = find_farthest_node(_player_pos)
@@ -57,7 +57,10 @@ func find_farthest_node(_pos):
 	return target_node
 
 func dijkstra(_start_node, _end_node):
-	print("The start node is ", _start_node.name, " and the end node is ", _end_node.name)
+	#Implementing code as seen in
+	#https://www.codingame.com/playgrounds/1608/shortest-paths-with-dijkstras-algorithm/keeping-track-of-paths
+	
+	#print("The start node is ", _start_node.name, " and the end node is ", _end_node.name)
 	#Recieving two nodes, finds a path along the graph made up by the array of all_nodes. Returns an Array() with the path.
 	var final_path = Array()
 	final_path.clear()
@@ -87,7 +90,7 @@ func dijkstra(_start_node, _end_node):
 		for j in neighbours:
 			if !j.check_visited():
 				var distance_buffer = current_node.get_min_distance() + current_node.global_position.distance_to(j.global_position)
-				print("distance buffer here is...", distance_buffer)
+				#print("distance buffer here is...", distance_buffer)
 				if distance_buffer < j.get_min_distance():
 					j.set_min_distance(distance_buffer)
 					shortest_path_to[j].clear()
@@ -128,9 +131,9 @@ func dijkstra(_start_node, _end_node):
 	
 	#When its node3 as the destination, it returns an empty array? thats...weird
 	
-	for i in all_nodes:
-		print("Final distances are..." , i.get_min_distance())
+	#for i in all_nodes:
+	#	print("Final distances are..." , i.get_min_distance())
 	#Finally, to return the array with the positions in order....
 	final_path = shortest_path_to[_end_node]
-	print("Is it a problem with path: " , final_path)
+	#print("Is it a problem with path: " , final_path)
 	return final_path
